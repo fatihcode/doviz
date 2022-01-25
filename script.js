@@ -1,4 +1,4 @@
-const url = "http://api.bigpara.hurriyet.com.tr/doviz/headerlist/anasayfa"
+const url = "https://api.bigpara.hurriyet.com.tr/doviz/headerlist/anasayfa"
 
 const result = document.getElementById("result")
 const time = document.getElementById("time")
