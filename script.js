@@ -7,6 +7,9 @@ const yerel = "data.json"
 const result = document.getElementById("result")
 const time = document.getElementById("time")
 
+const col = document.querySelectorAll(".col")
+
+console.log(col)
 
 async function getData(url) {
 
@@ -16,24 +19,33 @@ async function getData(url) {
     console.log(data)
     console.log(data.data[3])
     console.log(data.data[3].ALIS)
+    console.log((data.data[3].SEMBOL).substr(0, 3) + "/" + (data.data[3].SEMBOL).substr(3, 6))
 
+    console.log("ABC/XYZ")
+
+    console.log(`${data.data[6].YUZDEDEGISIM > 0 ? '<i class="bi bi-caret-up-fill"></i>' : '<i class="bi bi-caret-down-fill"></i>'}`)
 
 
     let veri = ""
 
-    for (let i =3; i < data.data.length; i++) {
+    for (let m = 0; m < col.length; m++) {
 
-        veri += `<tr>
-        <th>${data.data[i].SEMBOL}</th>
-        <td>${(data.data[i].ALIS).toFixed(3)}</td>
-        <td>${(data.data[i].SATIS).toFixed(3)}</td>
-        <td>${(data.data[i].YUZDEDEGISIM).toFixed(3)}</td>
-    </tr>`
+        for (let i = 0; i < data.data.length; i++) {
 
+            if (col[m].innerHTML === data.data[i].SEMBOL) {
+
+                veri += `<tr>
+                            <th class="p-3" title="${data.data[i].ACIKLAMA}"><i class="bi bi-info-circle"></i> ${(data.data[i].SEMBOL).substr(0,3)+"/"+(data.data[i].SEMBOL).substr(3,6)}</th>
+                            <td class="p-3">${(data.data[i].ALIS).toFixed(3)}</td>
+                            <td class="p-3">${(data.data[i].SATIS).toFixed(3)}</td>
+                            <td class="p-3 ${data.data[i].YUZDEDEGISIM} ${data.data[i].YUZDEDEGISIM > 0 ? 'text-success' : 'text-danger'}"><strong>${data.data[i].YUZDEDEGISIM} ${data.data[i].YUZDEDEGISIM > 0 ? '<i class="bi bi-caret-up-fill"></i>' : '<i class="bi bi-caret-down-fill"></i>'}</strong></td>
+                        </tr>`
+            }
+        }
     }
 
     result.innerHTML = veri
-    time.innerHTML=data.data[7].TARIH
+    time.innerHTML = `<i class="bi bi-clock"></i> Son Güncelleme: ${data.data[7].TARIH.substr(11,8)}`
 
 }
 
