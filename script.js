@@ -19,9 +19,9 @@ async function getData(url) {
 
                 veri += `<tr>
                             <th class="p-3 ${data.data[i].YUZDEDEGISIM > 0 ? 'text-success' : 'text-danger'}" title="${data.data[i].ACIKLAMA}"><i class="bi bi-info-circle"></i> ${data.data[i].SEMBOL.includes("TRY")?data.data[i].SEMBOL.slice(0,data.data[i].SEMBOL.indexOf("TRY"))+"/TRY":data.data[i].SEMBOL}</th>
-                            <td class="p-3">${(data.data[i].ALIS).toFixed(3)}</td>
-                            <td class="p-3">${(data.data[i].SATIS).toFixed(3)}</td>
-                            <td class="p-3 ${data.data[i].YUZDEDEGISIM > 0 ? 'text-success' : 'text-danger'}"><strong>${data.data[i].YUZDEDEGISIM}% ${data.data[i].YUZDEDEGISIM > 0 ? '<i class="bi bi-caret-up-fill"></i>' : '<i class="bi bi-caret-down-fill"></i>'}</strong></td>
+                            <td class="p-3">${data.data[i].ALIS.toFixed(3)}</td>
+                            <td class="p-3">${data.data[i].SATIS.toFixed(3)}</td>
+                            <td class="p-3 ${data.data[i].YUZDEDEGISIM > 0 ? 'text-success' : 'text-danger'}"><strong>${data.data[i].YUZDEDEGISIM.toFixed(2)}% ${data.data[i].YUZDEDEGISIM > 0 ? '<i class="bi bi-caret-up-fill"></i>' : '<i class="bi bi-caret-down-fill"></i>'}</strong></td>
                         </tr>`
             }
         }
